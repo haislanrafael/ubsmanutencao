@@ -1,5 +1,14 @@
-// Número do WhatsApp (alterar para o número oficial)
-window.WHATSAPP_PHONE = window.WHATSAPP_PHONE || '5541998278767';
+// Número do WhatsApp oficial da UBS Manutenções
+window.WHATSAPP_PHONE = '554184224262';
+// Mensagem padrão ao iniciar contato pelo WhatsApp
+window.DEFAULT_CONTACT_MESSAGE = `Olá, tudo bem?
+
+Gostaria de obter mais informações sobre o serviço que vocês oferecem. Poderiam, por favor, me enviar detalhes sobre como funciona o processo, prazos e quais opções estão disponíveis?
+Aproveito também para solicitar um orçamento e esclarecer algumas dúvidas que tenho para avaliar a melhor forma de avançar.
+
+Desde já, agradeço pela atenção e fico no aguardo do retorno.
+
+Atenciosamente.`;
 
 function smoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -38,8 +47,7 @@ function setupCTA() {
   const btnOrc = document.getElementById('btn-orcamento');
   if (!btnOrc) return;
   btnOrc.addEventListener('click', () => {
-    const msg = 'Olá! Gostaria de solicitar um orçamento para serviços de solda/manutenção.';
-    openWhatsApp(msg);
+    openWhatsApp(window.DEFAULT_CONTACT_MESSAGE);
   });
 }
 
@@ -48,11 +56,17 @@ function setupFormContato() {
   if (!form) return;
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const telefone = document.getElementById('telefone').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
-    const texto = `Olá! Meu nome é ${nome}.\nEmail: ${email}\nTelefone: ${telefone}\nMensagem: ${mensagem}`;
+    const nome = (document.getElementById('nome')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
+    const telefone = (document.getElementById('telefone')?.value || '').trim();
+    const mensagem = (document.getElementById('mensagem')?.value || '').trim();
+
+    const texto = `${window.DEFAULT_CONTACT_MESSAGE}\n\n` +
+      `Nome: ${nome || 'N/A'}\n` +
+      `Email: ${email || 'N/A'}\n` +
+      `Telefone: ${telefone || 'N/A'}\n` +
+      `Mensagem: ${mensagem || 'N/A'}`;
+
     openWhatsApp(texto);
   });
 }
@@ -62,8 +76,7 @@ function setupWhatsAppFloat() {
   if (!floatBtn) return;
   floatBtn.addEventListener('click', e => {
     e.preventDefault();
-    const msg = 'Olá! Preciso de ajuda com serviços de solda/manutenção.';
-    openWhatsApp(msg);
+    openWhatsApp(window.DEFAULT_CONTACT_MESSAGE);
   });
 }
 
@@ -73,5 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCTA();
   setupFormContato();
   setupWhatsAppFloat();
+  setupGaleriaFallback();
 });
 
+function setupGaleriaFallback() {
+  const imgs = document.querySelectorAll('.galeria-grid img');
+  if (!imgs.length) return;
+  imgs.forEach((img, idx) => {
+    // Garantir carregamento preguiçoso para otimizar renderização
+    try { img.loading = 'lazy'; } catch { }
+    // Se a imagem falhar, usar um placeholder para não ficar vazio
+    img.addEventListener('error', () => {
+      const seed = `ubs_${idx + 1}`;
+      img.src = `https://picsum.photos/seed/${seed}/800/600`;
+    });
+  });
+}
