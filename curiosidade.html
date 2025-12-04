@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBS Manutenções | Experimente</title>
+  <meta name="description" content="Experimente a nova experiência interativa da UBS Manutenções." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html#home" class="logo" aria-label="UBS Manutenções">
+        <img src="img/logou.png?v=1" alt="UBS Manutenções" width="36" height="36" loading="eager" onerror="this.onerror=null;this.src='img/logo.png?v=1';" />
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.html#home">Home</a></li>
+          <li><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+          <li><a class="nav-link" href="index.html#servicos">Serviços</a></li>
+          <li><a class="nav-link" href="index.html#galeria">Galeria</a></li>
+          <li><a class="nav-link" href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="curiosidade-page" class="curio-section" aria-label="Experiência interativa">
+      <div class="curio-bg"></div>
+      <div class="container curio-content">
+        <h1>Um botão, muitas possibilidades</h1>
+        <p>Arraste o cursor, sinta o movimento e clique para descobrir.</p>
+        <div class="curio-button-wrap">
+          <button id="curio-button" class="curio-button" aria-label="Descobrir">
+            <span class="curio-label">Descubra</span>
+            <span class="curio-glow"></span>
+          </button>
+        </div>
+        <div class="curio-reveal" id="curio-reveal" aria-live="polite">
+          <div class="curio-card">
+            <h2>O que a UBS pode fazer por você?</h2>
+            <p id="curio-phrase" class="curio-phrase"></p>
+            <div class="curio-actions">
+              <button id="curio-whats" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Falar agora</button>
+              <a href="index.html#servicos" class="btn btn-outline"><i class="fa-solid fa-toolbox"></i> Ver serviços</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2025 UBS Manutenções. Todos os direitos reservados.</p>
+      <div class="footer-links">
+        <a href="index.html#servicos">Serviços</a>
+        <a href="index.html#contato">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

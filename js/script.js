@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormContato();
   setupWhatsAppFloat();
   setupGaleriaFallback();
+  setupCuriosidadePage();
+  setupPromocaoPage();
 });
 
 function setupGaleriaFallback() {
@@ -101,4 +103,96 @@ function setupGaleriaFallback() {
       img.src = `https://picsum.photos/seed/${seed}/800/600`;
     });
   });
+}
+
+function setupCuriosidadePage() {
+  const page = document.getElementById('curiosidade-page');
+  if (!page) return;
+  const wrap = page.querySelector('.curio-button-wrap');
+  const btn = document.getElementById('curio-button');
+  const reveal = document.getElementById('curio-reveal');
+  const phraseEl = document.getElementById('curio-phrase');
+  const whats = document.getElementById('curio-whats');
+  if (!wrap || !btn || !reveal || !phraseEl) return;
+  let hoverX = 0;
+  let hoverY = 0;
+  const max = 14;
+  wrap.addEventListener('mousemove', e => {
+    const rect = wrap.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    hoverX = Math.max(Math.min((e.clientX - cx) * 0.08, max), -max);
+    hoverY = Math.max(Math.min((e.clientY - cy) * 0.08, max), -max);
+    btn.style.transform = `translate(${hoverX}px, ${hoverY}px)`;
+  });
+  wrap.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0, 0)';
+  });
+  const phrases = [
+    'Visita técnica gratuita para diagnóstico inicial.',
+    'Propostas claras, prazos objetivos e segurança em primeiro lugar.',
+    'Solda MIG/MAG, TIG e eletrodo com qualidade.',
+    'Fabricação e reparos em estruturas metálicas sob medida.'
+  ];
+  let idx = 0;
+  let typing = false;
+  function typeText(el, text) {
+    typing = true;
+    el.textContent = '';
+    let i = 0;
+    function step() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(step, 18);
+      } else {
+        typing = false;
+      }
+    }
+    step();
+  }
+  function nextPhrase() {
+    const text = phrases[idx % phrases.length];
+    typeText(phraseEl, text);
+    idx++;
+  }
+  btn.addEventListener('click', () => {
+    window.location.href = 'promocao.html';
+  });
+  if (whats) {
+    whats.addEventListener('click', () => {
+      openWhatsApp('Olá! Quero entender como a UBS pode me ajudar.');
+    });
+  }
+}
+
+function setupPromocaoPage() {
+  const page = document.getElementById('promocao-page');
+  if (!page) return;
+  const codeEl = document.getElementById('promo-code');
+  const copyBtn = document.getElementById('btn-copy-code');
+  const whatsBtn = document.getElementById('btn-whats-promo');
+  function genCode() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let s = 'UBS-';
+    for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+    return s;
+  }
+  const code = genCode();
+  if (codeEl) codeEl.textContent = code;
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code);
+        copyBtn.textContent = 'Código copiado';
+        setTimeout(() => copyBtn.textContent = 'Copiar código', 1500);
+      } catch { }
+    });
+  }
+  if (whatsBtn) {
+    whatsBtn.addEventListener('click', () => {
+      const extra = `\n\nCódigo de desconto: ${code}\nOrigem: site`;
+      openWhatsApp(`${window.DEFAULT_CONTACT_MESSAGE}${extra}`);
+    });
+  }
 }
