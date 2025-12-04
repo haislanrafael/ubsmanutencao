@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <!-- Fundo arredondado com o laranja do site -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)"/>
+  <!-- Ícone simples de solda: eletrodo e faíscas -->
+  <g stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- eletrodo -->
+    <path d="M18 42 L38 22" stroke-width="4"/>
+    <!-- cabo curto -->
+    <path d="M16 44 L22 50" stroke-width="3"/>
+    <!-- faíscas -->
+    <path d="M40 24 L44 20" stroke-width="3"/>
+    <path d="M42 26 L48 26" stroke-width="2.5"/>
+    <path d="M40 28 L44 32" stroke-width="2.5"/>
+  </g>
+</svg>

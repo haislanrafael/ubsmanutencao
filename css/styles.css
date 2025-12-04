@@ -378,6 +378,217 @@ section {
   transform: translateY(-2px);
 }
 
+.curio-section {
+  position: relative;
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.curio-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(249, 115, 22, .12), transparent 70%),
+    radial-gradient(1200px 600px at 50% 100%, rgba(249, 115, 22, .08), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .02) 0 2px, transparent 2px 6px);
+}
+
+.curio-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 96px;
+}
+
+.curio-content h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 0 0 8px;
+}
+
+.curio-content p {
+  color: var(--muted);
+  max-width: 720px;
+  margin: 0 auto 24px;
+}
+
+.curio-button-wrap {
+  display: grid;
+  place-items: center;
+  height: 300px;
+}
+
+.curio-button {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #111 0%, #0b1220 60%, #111 100%);
+  border: 2px solid rgba(249, 115, 22, .35);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: .4px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.curio-button:hover {
+  transform: scale(1.03);
+  border-color: var(--primary);
+  box-shadow: 0 24px 60px rgba(249, 115, 22, .18), 0 16px 40px rgba(0, 0, 0, .45);
+}
+
+.curio-label {
+  z-index: 1;
+}
+
+.curio-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(249, 115, 22, .2), transparent 60%);
+  filter: blur(18px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.curio-reveal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 18, 32, .65);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.curio-reveal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.curio-card {
+  width: min(760px, 92%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+}
+
+.curio-card h2 {
+  font-family: 'Poppins', sans-serif;
+  margin: 0 0 10px;
+}
+
+.curio-phrase {
+  min-height: 28px;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.curio-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.promo-section {
+  position: relative;
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.promo-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(249, 115, 22, .12), transparent 70%),
+    radial-gradient(1200px 600px at 80% 100%, rgba(249, 115, 22, .08), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .02) 0 2px, transparent 2px 6px);
+}
+
+.promo-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 96px;
+}
+
+.promo-card {
+  width: min(640px, 92%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+}
+
+.promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(249, 115, 22, .14);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.promo-title {
+  font-family: 'Poppins', sans-serif;
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+.promo-sub {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.promo-percent {
+  background: linear-gradient(90deg, var(--primary), #ffd29f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.promo-code {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  background: rgba(255, 255, 255, .03);
+  margin-bottom: 14px;
+}
+
+.promo-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.promo-terms {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
 @media (max-width: 992px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
